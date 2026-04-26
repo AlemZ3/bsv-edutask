@@ -2,7 +2,7 @@ from src.controllers.usercontroller import UserController
 from src.util.dao import DAO
 import random
 
-def hasAttribute(obj: dict, attribute: str):
+def hasAttribute(obj: dict or None, attribute: str):
     """Check whether a given dict contains a specific attribute
 
     parameters:
@@ -11,8 +11,10 @@ def hasAttribute(obj: dict, attribute: str):
 
     returns:
         True -- if the dict contains the attribute as a key
-        False -- if the dict does not contain the attribute as a key or is None    
+        False -- if the dict does not contain the attribute as a key or is None
     """
+    if obj is None:
+        return False
     return (attribute in obj)
 
 class ValidationHelper:
