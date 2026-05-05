@@ -64,11 +64,11 @@ class TestUserControllerDatabaseOperations:
 
     @pytest.mark.unit
     def test_returns_none_when_no_user_exists(self, controller, dao_mock):
-        """Should raise IndexError when no matching user found (BUG: should return None per docstring)"""
+        """Should return None when no matching user found"""
         dao_mock.find.return_value = []
 
-        with pytest.raises(IndexError):
-            controller.get_user_by_email('nonexistent@example.com')
+        result = controller.get_user_by_email('nonexistent@example.com')
+        assert result is None
 
     @pytest.mark.unit
     def test_handles_multiple_duplicate_emails(self, controller, dao_mock):
