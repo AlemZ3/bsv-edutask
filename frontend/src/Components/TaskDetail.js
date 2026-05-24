@@ -50,13 +50,13 @@ function TaskDetail({ taskid, updateTasks }) {
             headers: { 'Cache-Control': 'no-cache' }
         })
             .then(res => res.json())
-            .then(todoobj => updateTask())
-            .then(updateTasks())
+            .then(() => updateTask())
+            .then(() => updateTasks())
             .catch(function (error) {
                 console.error(error)
             });
 
-        
+
         setTodo("");
     }
 
@@ -75,7 +75,7 @@ function TaskDetail({ taskid, updateTasks }) {
         })
             .then(res => res.json())
             .then(() => updateTask())
-            .then(updateTasks())
+            .then(() => updateTasks())
             .catch(function (error) {
                 console.error(error)
             });
@@ -87,13 +87,13 @@ function TaskDetail({ taskid, updateTasks }) {
      * @param {*} todo Todo object which is deleted
      */
     const deleteTodo = (todo) => {
-        fetch(`http://localhost:5000/todos/byid/${todo._id}`, {
+        fetch(`http://localhost:${process.env.REACT_APP_BACKEND_PORT}/todos/byid/${todo._id}`, {
             method: 'delete',
             headers: { 'Cache-Control': 'no-cache' }
         })
             .then(res => res.json())
-            .then(updateTask())
-            .then(updateTasks())
+            .then(() => updateTask())
+            .then(() => updateTasks())
             .catch(function (error) {
                 console.error(error)
             });
